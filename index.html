@@ -439,7 +439,7 @@
   </div>
 
   <script>
-    const WEBHOOK_URL = 'COLE_SUA_URL_DE_WEBHOOK_AQUI';
+    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwF6nA4BR3JgoBKa92XoulroaGROu0blbFwzomXD1rlcQw_9I1BIOE-ntcptwZlkEvJ/exec?gid=24321587';
 
     const form = document.getElementById('form-inscricao');
     const success = document.getElementById('success-msg');
@@ -467,6 +467,7 @@
 
       fetch(WEBHOOK_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       }).catch(function() {});
