@@ -456,16 +456,16 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const payload = {
+      const params = new URLSearchParams({
         Nome:      document.getElementById('nome').value,
         Whatsapp:  document.getElementById('whatsapp').value,
         Email:     document.getElementById('email').value,
         Cidade:    document.getElementById('cidade').value,
         URL:       window.location.href,
         Data_da_conversao: new Date().toISOString()
-      };
+      });
 
-      navigator.sendBeacon(WEBHOOK_URL, new Blob([JSON.stringify(payload)], { type: 'text/plain' }));
+      new Image().src = WEBHOOK_URL + '?' + params.toString();
 
       window.location.href = 'obrigado.html';
     });
