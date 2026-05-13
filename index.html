@@ -465,12 +465,7 @@
         Data_da_conversao: new Date().toISOString()
       };
 
-      fetch(WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(function() {});
+      navigator.sendBeacon(WEBHOOK_URL, new Blob([JSON.stringify(payload)], { type: 'text/plain' }));
 
       window.location.href = 'obrigado.html';
     });
