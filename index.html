@@ -439,6 +439,8 @@
   </div>
 
   <script>
+    const WEBHOOK_URL = 'COLE_SUA_URL_DE_WEBHOOK_AQUI';
+
     const form = document.getElementById('form-inscricao');
     const success = document.getElementById('success-msg');
 
@@ -453,9 +455,23 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      form.style.display = 'none';
-      success.style.display = 'block';
-      // Aqui você conecta ao seu backend, webhook ou ferramenta de e-mail
+
+      const payload = {
+        Nome:      document.getElementById('nome').value,
+        Whatsapp:  document.getElementById('whatsapp').value,
+        Email:     document.getElementById('email').value,
+        Cidade:    document.getElementById('cidade').value,
+        URL:       window.location.href,
+        Data_da_conversao: new Date().toISOString()
+      };
+
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function() {});
+
+      window.location.href = 'obrigado.html';
     });
   </script>
 
